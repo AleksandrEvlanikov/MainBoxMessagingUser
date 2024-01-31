@@ -1,0 +1,68 @@
+﻿@model List<Message>
+
+<h2>Сообщения</h2>
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <div class="alert alert-success">
+        @ViewBag.SuccessMessage
+    </div>
+}
+<p>Добро пожаловать, @User.Identity.Name!</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Отправитель</th>
+            <th>Сообщение</th>
+            <th>Дата</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var message in Model)
+            {
+                <tr>
+                    <td>@message.SenderId</td>
+                    <td>@message.Content</td>
+                    <td>@message.DateTime</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3">Сообщений нет.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <div>
+@*         <p>Показать всех пользователей <a href="@Url.Action("ShowAllUsers", "Auth")">Тут</a></p>
+ *@        <a href="@Url.Action("ShowAllUsers", "Auth")">Показать всех пользователей</a>
+@*         <p>Удалить пользователя <a href="@Url.Action("DeleteUser", "Auth")">Тут</a></p>
+ *@        <a href="@Url.Action("DeleteUser", "Auth")">Удалить пользователя</a>
+    </div>
+}
+
+
+
+
+
+<h2>Отправить сообщение</h2>
+
+<form asp-controller="Auth" asp-action="SendMessage" method="post">
+    <div class="form-group">
+        <label for="receiverId">ID получателя:</label>
+        <input type="text" name="receiverId" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="content">Сообщение:</label>
+        <textarea name="content" class="form-control" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Отправить</button>
+</form>

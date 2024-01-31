@@ -1,0 +1,36 @@
+﻿@using System.Security.Claims
+@model User
+
+@if (Model != null)
+{
+@*     <h2>Удалить пользователя</h2>
+
+    <p>Are you sure you want to delete the user with the following details?</p>
+
+    <dl class="row">
+        <dt class="col-sm-2">Email</dt>
+        <dd class="col-sm-10">@Model?.Email</dd>
+
+        <dt class="col-sm-2">Password</dt>
+        <dd class="col-sm-10">@Model?.Password</dd>
+        <!-- Add any other user details you want to display -->
+    </dl> *@
+
+    <form asp-action="DeleteUser" method="post">
+        <input type="hidden" asp-for="Id" />
+@*         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (Model.Id.ToString() != currentUserId)
+            {
+                <button type="submit" class="btn btn-danger">Delete</button>
+            }
+        } *@
+        <a asp-action="ShowAllUsers">Cancel</a>
+    </form>
+}
+else
+{
+    <p>Пользователя нельзя удалить.</p>
+}
+

@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Send Message";
+}
+
+<h2>Отправить сообщение</h2>
+
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <div class="alert alert-success">
+        @ViewBag.SuccessMessage
+    </div>
+}
+
+<form asp-controller="Auth" asp-action="SendMessage" method="post">
+    <div class="form-group">
+        <label for="receiverId">ID получателя:</label>
+        <input type="text" name="receiverId" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="content">Сообщение:</label>
+        <textarea name="content" class="form-control" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Отправить</button>
+</form>
+
+
