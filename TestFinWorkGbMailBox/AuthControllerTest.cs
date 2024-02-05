@@ -5,6 +5,7 @@ using FinWorkGBMailBox.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Moq;
+using System.Collections.Generic;
 
 namespace TestFinWorkGbMailBox
 {
@@ -14,10 +15,10 @@ namespace TestFinWorkGbMailBox
         private AuthController _authController;
         private Mock<ApplicationDbContext> _mockDbContext;
 
-        public AuthControllerTest(AuthController authController, Mock<ApplicationDbContext> mockDbContext)
+        public AuthControllerTest()
         {
-            _authController = authController;
-            _mockDbContext = mockDbContext;
+            _mockDbContext = new Mock<ApplicationDbContext>();
+            _authController = new AuthController(_mockDbContext.Object);
         }
 
         private DbSet<T> MockDbSet<T>(List<T> data) where T : class
@@ -32,11 +33,13 @@ namespace TestFinWorkGbMailBox
             return mockSet.Object;
         }
 
+
+
         [Fact]
         public async Task RegisterValidUserReturnsSuccess()
         {
             _mockDbContext.Setup(context => context.Users)
-                .Returns(MockDbSet(new List<User>())); 
+                .Returns(MockDbSet(new List<User>()));
 
             var result = await _authController.Register("test@example.com", "Abcdef");
 
@@ -45,9 +48,34 @@ namespace TestFinWorkGbMailBox
 
             var viewResult = (ViewResult)result;
             Assert.Equal("Login", viewResult.ViewName);
-            Assert.Equal("Регистрация прошла успешно. Теперь вы можете войти.", viewResult.ViewBag.SuccessMessage);
+            Assert.Equal("Регистрация прошла успешно. Теперь вы можете войти.", viewResult.ViewData["SuccessMessage"]);
+        }
+        [Fact]
+        public void RegisterExistingUser()
+        {
+            _mockDbContext.Setup(context => context.Users)
+                .Returns(MockDbSet(new List<User> { new User { Email = "test@example.com" } }));
+
+            var result = _authController.Register("test@example.com", "Abcdef").Result;
+
+            Assert.NotNull(result);
+            Assert.IsType<ViewResult>(result);
+
+            var viewResult = (ViewResult)result;
+            Assert.Equal("Пользователь с таким email уже существует.", viewResult.ViewData["ErrorMessage"]);
         }
 
+        [Fact]
+        public async Task RegisterInvalidPassword()
+        {
+            var result = await _authController.Register("test@example.com", "abc");
 
+            Assert.NotNull(result);
+            Assert.IsType<ViewResult>(result);
+
+            var viewResult = (ViewResult)result;
+            Assert.Equal("Некорректный пароль. Пароль должен быть больше 5 символов и с 1 заглавной буквой.", viewResult.ViewData["ErrorMessage"]);
+
+        }
     }
 }
