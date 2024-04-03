@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FinWorkGBMailBox\MailBoxMessagingUserManagement.csproj" />
+    <ProjectReference Include="..\MailBoxMessagingUserManagement\MailBoxMessagingUserManagement.csproj" />
   </ItemGroup>
 
 </Project>

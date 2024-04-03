@@ -1,8 +1,8 @@
-using FinWorkGBMailBox.Models;
+using MailBoxMessagingUserManagement.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
-namespace FinWorkGBMailBox
+namespace MailBoxMessagingUserManagement
 {
     public class Program
     {

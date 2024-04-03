@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace FinWorkGBMailBox.Models
+namespace MailBoxMessagingUserManagement.Models
 {
     public interface IApplicationDbContext
     {

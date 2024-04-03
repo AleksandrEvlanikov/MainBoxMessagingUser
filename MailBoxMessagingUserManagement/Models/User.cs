@@ -1,4 +1,4 @@
-﻿namespace FinWorkGBMailBox.Models
+﻿namespace MailBoxMessagingUserManagement.Models
 {
     public class User
     {

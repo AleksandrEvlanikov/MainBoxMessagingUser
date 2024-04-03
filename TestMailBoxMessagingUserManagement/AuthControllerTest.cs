@@ -1,13 +1,11 @@
-
-
-using FinWorkGBMailBox.Controllers;
-using FinWorkGBMailBox.Models;
+using MailBoxMessagingUserManagement.Controllers;
+using MailBoxMessagingUserManagement.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using System.Collections.Generic;
 
-namespace TestFinWorkGbMailBox
+namespace MailBoxMessagingUserManagement
 {
     public class AuthControllerTest
     {
