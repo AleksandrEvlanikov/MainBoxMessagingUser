@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailBoxMessagingUserManagement", "FinWorkGBMailBox\MailBoxMessagingUserManagement.csproj", "{EDC1F6AD-4686-4B76-B070-445838AEA2B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailBoxMessagingUserManagement", "MailBoxMessagingUserManagement\MailBoxMessagingUserManagement.csproj", "{EDC1F6AD-4686-4B76-B070-445838AEA2B1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMailBoxMessagingUserManagement", "TestFinWorkGbMailBox\TestMailBoxMessagingUserManagement.csproj", "{EA178EE5-2CAF-4A59-8B78-1A7D8FC8FF5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestMailBoxMessagingUserManagement", "TestMailBoxMessagingUserManagement\TestMailBoxMessagingUserManagement.csproj", "{EA178EE5-2CAF-4A59-8B78-1A7D8FC8FF5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
